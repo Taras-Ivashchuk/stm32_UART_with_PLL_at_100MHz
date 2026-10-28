@@ -1,0 +1,10 @@
+.cache/
+.vscode/
+*.o
+*.elf
+*.bin
+*.map
+*.d
+compile_commands.json
+cmsis_core/
+cmsis_f4/
