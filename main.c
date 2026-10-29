@@ -30,7 +30,7 @@ int main(void) {
   gpio_set_mode(led, GPIO_MODE_OUTPUT);
 
   // set the timer
-  bool state = true;
+  bool state = true; // turn on LED at the start
   uint32_t timer = 0;
   uint32_t period = 1000; // 1 sec
 
@@ -41,10 +41,6 @@ int main(void) {
   printf("status %s \r\n", get_sysclock_status_string(s));
 
   for (;;) {
-    gpio_write(led, true);
-    delay(100);
-    gpio_write(led, false);
-    delay(100);
     if (timer_expired(&timer, period, g_ticks)) {
       gpio_write(led, state);
       state = !state;
@@ -52,5 +48,4 @@ int main(void) {
       printf("status %s \r\n", get_sysclock_status_string(s));
     }
   }
-  // return 0;
 }
