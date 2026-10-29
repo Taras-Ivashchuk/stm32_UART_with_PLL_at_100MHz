@@ -36,7 +36,7 @@ int main(void) {
 
   // set UART
   uart_init(UART1, 115200);
-  char *txt = "I love bare-metal programming!!";
+  char *txt = "I like bare-metal programming!!";
 
   printf("status %s \r\n", get_sysclock_status_string(s));
 
