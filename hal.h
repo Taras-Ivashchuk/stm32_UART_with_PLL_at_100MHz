@@ -65,5 +65,15 @@ void uart_init(USART_TypeDef *uart, uint32_t baud);
 void uart_write_buf(USART_TypeDef *uart, const char *buf, size_t buf_size);
 sysclock_status_t init_sysclock(void);
 const char *get_sysclock_status_string(sysclock_status_t s);
+// Datasheet 6.3.10 Table 41. Main PLL characteristics at 16 MHz HSI
+// 300us MAX PLL lock time / 25us per attempts = 12 
+// 8 * 25us would give us the 200 us extra margin
+// so 20 attempts give us 300us + 200 us
+#define PLL_TIMEOUT_ATTEMPTS  20 
+
+// Datasheet 6.3.8 Table 37. HSE 4-26 MHz oscillator characteristics
+// Typical startup time is 2ms
+// 2ms / 25us = 80, and 3x extra margin would give us 240 
+#define HSE_TIMEOUT_ATTEMPTS 240
 
 #endif

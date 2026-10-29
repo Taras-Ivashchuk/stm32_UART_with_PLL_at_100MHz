@@ -188,8 +188,8 @@ sysclock_status_t init_HSE(void) {
 	RCC->CR |= RCC_CR_HSEON;
 
 	// wait till HSE is ready
-	if (wait_for_reg_status(
-				&(RCC->CR), RCC_CR_HSERDY, (1U << RCC_CR_HSERDY_Pos), 20))
+	if (wait_for_reg_status(&(RCC->CR), RCC_CR_HSERDY,
+				(1U << RCC_CR_HSERDY_Pos), HSE_TIMEOUT_ATTEMPTS))
 		return SYSCLK_HSE_TIMEOUT;
 
 	return SYSCLK_OK;
@@ -227,8 +227,8 @@ sysclock_status_t init_PLL(void) {
 	RCC->CR |= RCC_CR_PLLON;
 
 	// wait till PLL is unlocked
-	if (wait_for_reg_status(
-				&(RCC->CR), RCC_CR_PLLRDY, (1U << RCC_CR_PLLRDY_Pos), 20))
+	if (wait_for_reg_status(&(RCC->CR), RCC_CR_PLLRDY,
+				(1U << RCC_CR_PLLRDY_Pos), PLL_TIMEOUT_ATTEMPTS))
 		return SYSCLK_PLL_TIMEOUT;
 
 	return SYSCLK_OK;
